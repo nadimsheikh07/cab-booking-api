@@ -32,7 +32,6 @@ import { RideCouponsModule } from './ride_coupons/ride_coupons.module';
         username: config.get('DB_USERNAME'),
         password: config.get('DB_PASSWORD'),
         database: config.get('DB_NAME'),
-
         autoLoadEntities: true,
         synchronize: true,
       }),
