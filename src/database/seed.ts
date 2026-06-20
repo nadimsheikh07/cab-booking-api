@@ -1,17 +1,47 @@
 import { NestFactory } from '@nestjs/core';
+import { Logger } from '@nestjs/common';
 import { AppModule } from '../app.module';
 import { DataSource } from 'typeorm';
-import { PermissionSeeder } from './seeders/permission.seeder';
 import 'dotenv/config';
 
+import { RoleSeeder } from './seeders/role.seed';
+// import { PermissionSeeder } from './seeders/permission.seed';
+
 async function bootstrap() {
-  const app = await NestFactory.createApplicationContext(AppModule);
+  const logger = new Logger('Seeder');
 
-  const dataSource = app.get(DataSource);
+  try {
+    logger.log('🚀 Starting database seeding...');
 
-  await new PermissionSeeder(dataSource).run();
+    const app = await NestFactory.createApplicationContext(AppModule);
 
-  await app.close();
+    logger.log('✅ Nest application context created');
+
+    const dataSource = app.get(DataSource);
+
+    logger.log('✅ Database connection established');
+
+    // logger.log('🌱 Running PermissionSeeder...');
+    // await new PermissionSeeder(dataSource).run();
+    // logger.log('✅ PermissionSeeder completed');
+
+    logger.log('🌱 Running RoleSeeder...');
+    await new RoleSeeder(dataSource).run();
+    logger.log('✅ RoleSeeder completed');
+
+    logger.log('🎉 Database seeding completed successfully');
+
+    await app.close();
+
+    logger.log('👋 Seeder process finished');
+    process.exit(0);
+  } catch (error) {
+    const logger = new Logger('Seeder');
+
+    logger.error('❌ Seeder execution failed', error?.stack || error);
+
+    process.exit(1);
+  }
 }
 
 bootstrap();
