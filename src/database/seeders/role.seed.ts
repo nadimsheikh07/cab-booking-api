@@ -1,5 +1,5 @@
-import { Role } from 'src/roles/entities/role.entity';
-import { Permission } from 'src/permissions/entities/permission.entity';
+import { Role } from '../../roles/entities/role.entity';
+import { Permission } from '../../permissions/entities/permission.entity';
 import { DataSource } from 'typeorm';
 
 export class RoleSeeder {
@@ -58,7 +58,7 @@ export class RoleSeeder {
     for (const roleData of roles) {
       let role = await roleRepository.findOne({
         where: { name: roleData.name },
-        relations: ['permissions'],
+        relations: { permissions: true },
       });
 
       console.log('role', role);

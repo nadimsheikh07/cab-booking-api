@@ -8,7 +8,7 @@ import {
   JoinColumn,
 } from 'typeorm';
 import { User } from '../../users/entities/user.entity';
-import { VehicleType } from 'src/vehicle_types/entities/vehicle_type.entity';
+import { VehicleType } from '../../vehicle_types/entities/vehicle_type.entity';
 
 @Entity('vehicles')
 export class Vehicle {

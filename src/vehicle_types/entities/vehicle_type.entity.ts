@@ -1,4 +1,4 @@
-import { Vehicle } from 'src/vehicles/entities/vehicle.entity';
+import { Vehicle } from '../../vehicles/entities/vehicle.entity';
 import {
   Entity,
   PrimaryGeneratedColumn,

@@ -16,6 +16,8 @@ import { CouponsModule } from './coupons/coupons.module';
 import { RideReviewsModule } from './ride_reviews/ride_reviews.module';
 import { DriverEarningsModule } from './driver_earnings/driver_earnings.module';
 import { RideCouponsModule } from './ride_coupons/ride_coupons.module';
+import { AuthModule } from './auth/auth.module';
+import { RedisModule } from './redis/redis.module';
 
 @Module({
   imports: [
@@ -36,6 +38,10 @@ import { RideCouponsModule } from './ride_coupons/ride_coupons.module';
         synchronize: true,
       }),
     }),
+
+    RedisModule,
+
+    AuthModule,
 
     PermissionsModule,
 

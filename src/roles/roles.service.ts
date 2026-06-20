@@ -54,14 +54,14 @@ export class RolesService {
 
   async findAll() {
     return this.roleRepository.find({
-      relations: ['permissions'],
+      relations: { permissions: true },
     });
   }
 
   async findOne(id: number) {
     const role = await this.roleRepository.findOne({
       where: { id },
-      relations: ['permissions'],
+      relations: { permissions: true },
     });
 
     if (!role) {

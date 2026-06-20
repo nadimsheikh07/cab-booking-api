@@ -4,13 +4,14 @@ import {
   Column,
   ManyToOne,
   OneToOne,
+  JoinColumn,
   CreateDateColumn,
   UpdateDateColumn,
 } from 'typeorm';
 
 import { User } from '../../users/entities/user.entity';
 import { Vehicle } from '../../vehicles/entities/vehicle.entity';
-import { RideRequest } from 'src/ride_requests/entities/ride_request.entity';
+import { RideRequest } from '../../ride_requests/entities/ride_request.entity';
 
 export enum RideStatus {
   ASSIGNED = 'assigned',
@@ -26,6 +27,7 @@ export class Ride {
   id: string;
 
   @OneToOne(() => RideRequest)
+  @JoinColumn({ name: 'ride_request_id' })
   rideRequest: RideRequest;
 
   @ManyToOne(() => User)
