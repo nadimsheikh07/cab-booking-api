@@ -19,7 +19,7 @@ export class SignupDto {
   })
   @IsString()
   @IsNotEmpty()
-  name: string;
+  name?: string;
 
   @ApiProperty({
     description: 'Email address of the user',
@@ -27,7 +27,7 @@ export class SignupDto {
     format: 'email',
   })
   @IsEmail()
-  email: string;
+  email?: string;
 
   @ApiProperty({
     description: 'Mobile number of the user (10-15 digits)',
@@ -37,7 +37,7 @@ export class SignupDto {
   })
   @IsString()
   @Length(10, 15)
-  mobile: string;
+  mobile?: string;
 
   @ApiProperty({
     description: 'Password for the user account (minimum 6 characters)',
@@ -47,7 +47,7 @@ export class SignupDto {
   })
   @IsString()
   @MinLength(6)
-  password: string;
+  password?: string;
 
   @ApiProperty({
     description: 'Type of user account',
@@ -56,7 +56,7 @@ export class SignupDto {
     enumName: 'UserType',
   })
   @IsIn([UserType.CUSTOMER, UserType.DRIVER])
-  userType: UserType.CUSTOMER | UserType.DRIVER;
+  userType?: UserType.CUSTOMER | UserType.DRIVER;
 
   @ApiPropertyOptional({
     description: 'Name of the cab (required for DRIVER user type)',
